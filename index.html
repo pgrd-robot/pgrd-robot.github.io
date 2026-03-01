@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Learning Physics-Guided Residual Dynamics (PReD) for deformable object simulation">
+        content="Learning Physics-Guided Residual Dynamics (PGRD) for deformable object simulation">
   <meta name="keywords" content="Deformable Object Simulation, Residual Dynamics, Robotics, Physics-Guided Learning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Learning Physics-Guided Residual Dynamics for Deformable Object Simulation</title>
@@ -128,7 +128,7 @@
         </div>
         <br>
         <h2 class="subtitle has-text-centered">
-          Physics-Guided Residual Dynamics (PReD) combines a spring-mass simulator with a learned
+          Physics-Guided Residual Dynamics (PGRD) combines a spring-mass simulator with a learned
           residual model for stable and accurate deformable object simulation.
         </h2>
       </div>
@@ -157,7 +157,7 @@
   <div class="column is-four-fifths">
     <h2 class="title is-3">Abstract</h2>
     <div class="content has-text-justified">
-      <p>Simulating deformable objects is essential for a wide range of robotic manipulation applications. Yet, accurately predicting their dynamics remains challenging. Physics-based simulations are interpretable, but they require a known model class and precise identification of physical parameters, which are often difficult to obtain. Learning-based approaches can be more expressive in capturing dynamics, but they often generalize poorly outside the training distribution, require substantial training data, and lack physical consistency. We propose Physics-Guided Residual Dynamics (PReD), a hybrid simulation framework that combines an optimizable spring–mass simulator as a backbone with a learned neural network that predicts residual corrections to compensate for discrepancies between physics-based predictions and reality. Our velocity-based formulation ensures stable simulation, while a sliding-window transformer captures temporal dependencies. We validate our approach on real-world deformable objects, demonstrating that PReD outperforms both purely physics-based simulators and learning-based methods. We further demonstrate the practical utility of our framework in action-conditioned 3D video prediction using 3D Gaussian Splatting and in Model Predictive Control for manipulation planning on challenging tasks such as cable rerouting, where purely physics-based simulation fails.</p>
+      <p>Simulating deformable objects is essential for a wide range of robotic manipulation applications. Yet, accurately predicting their dynamics remains challenging. Physics-based simulations are interpretable, but they require a known model class and precise identification of physical parameters, which are often difficult to obtain. Learning-based approaches can be more expressive in capturing dynamics, but they often generalize poorly outside the training distribution, require substantial training data, and lack physical consistency. We propose Physics-Guided Residual Dynamics (PGRD), a hybrid simulation framework that combines an optimizable spring–mass simulator as a backbone with a learned neural network that predicts residual corrections to compensate for discrepancies between physics-based predictions and reality. Our velocity-based formulation ensures stable simulation, while a sliding-window transformer captures temporal dependencies. We validate our approach on real-world deformable objects, demonstrating that PGRD outperforms both purely physics-based simulators and learning-based methods. We further demonstrate the practical utility of our framework in action-conditioned 3D video prediction using 3D Gaussian Splatting and in Model Predictive Control for manipulation planning on challenging tasks such as cable rerouting, where purely physics-based simulation fails.</p>
       </p>
     </div>
   </div>
@@ -219,7 +219,7 @@
 <div class="rows">
   <h2 class="title is-3">Results</h2>
   <p class="content has-text-justified">
-    PReD achieves the lowest error across all tracking metrics and improves visual quality in
+    PGRD achieves the lowest error across all tracking metrics and improves visual quality in
     action-conditioned video prediction. Qualitative comparisons show improved structural consistency
     and more realistic deformations across all objects.
   </p>
@@ -232,9 +232,9 @@
 
 <hr class="rounded">
 <div class="rows">
-  <h2 class="title is-3">Planning with PReD</h2>
+  <h2 class="title is-3">Planning with PGRD</h2>
   <p class="content has-text-justified">
-    PReD supports MPPI planning for manipulation planning, achieving 8/10 cable rerouting successes versus 2/10 for the physics-only baseline.
+    PGRD supports MPPI planning for manipulation planning, achieving 8/10 cable rerouting successes versus 2/10 for the physics-only baseline.
   </p>
   <div style="text-align: center;">
     <video controls style="max-width: 70%; border-radius: 8px;">
@@ -243,9 +243,9 @@
   </div>
 
   <hr class="rounded">
-  <h2 class="title is-3">Interactive Simulation with PReD and 3DGS</h2>
+  <h2 class="title is-3">Interactive Simulation with PGRD and 3DGS</h2>
   <p class="content has-text-justified">
-    PReD enables action-conditioned 3D video prediction using 3D Gaussian Splatting for interactive simulation.
+    PGRD enables action-conditioned 3D video prediction using 3D Gaussian Splatting for interactive simulation.
   </p>
   <div style="text-align: center;">
     <video
