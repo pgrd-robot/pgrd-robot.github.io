@@ -173,3 +173,19 @@ body {
   padding: 36px 24px;
   text-align: center;
 }
+
+.planning-video-grid {
+  margin-top: 1rem;
+}
+
+.planning-video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.planning-caption {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
