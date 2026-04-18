@@ -74,6 +74,15 @@
                   <span>Paper</span>
                 </a>
               </span>
+              <span class="link-block">
+                <a href="https://github.com/shivanshpatel35/pgrd"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
               <!-- <span class="link-block">
                 <a href="#"
                    class="external-link button is-normal is-rounded is-dark">
@@ -110,16 +119,22 @@
   </div>
 </section>
 
-<!-- <section class="hero teaser">
+<section class="hero teaser">
   <div class="container is-max-widescreen">
     <div class="hero-body">
       <div class="container">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Teaser</h2>
+          </div>
+        </div>
         <div class="columns is-vcentered is-centered">
           <video
-            id="teaser"
+            class="autoplay-on-view"
             muted
-            autoplay
             controls
+            playsinline
+            preload="metadata"
             style="max-width: 900px; width: 100%;"
             height="100%">
             <source src="static/videos/teaser.mp4" type="video/mp4">
@@ -134,22 +149,44 @@
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 <script>
-  const video = document.getElementById("teaser");
-  if (video) {
-    video.addEventListener("ended", () => {
-      video.pause();
-      video.currentTime = 0;
+  document.addEventListener("DOMContentLoaded", () => {
+    const autoPlayVideos = document.querySelectorAll("video.autoplay-on-view");
+    if (!autoPlayVideos.length) return;
+
+    autoPlayVideos.forEach((video) => {
+      // Muted + inline playback is required for reliable autoplay.
+      video.muted = true;
+      video.defaultMuted = true;
+      video.setAttribute("playsinline", "");
+      if (!video.hasAttribute("preload")) {
+        video.setAttribute("preload", "metadata");
+      }
     });
 
-    window.addEventListener("load", () => {
-      video.play().catch(error => {
-        console.error("Auto-play was blocked:", error);
-      });
-    });
-  }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {
+                // Ignore blocked autoplay promise rejections.
+              });
+            }
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: [0.25, 0.6, 0.9] }
+    );
+
+    autoPlayVideos.forEach((video) => observer.observe(video));
+  });
 </script>
 
 <div class="container is-max-widescreen">
@@ -224,7 +261,7 @@
     and more realistic deformations across all objects.
   </p>
   <div style="text-align: center;">
-    <video controls style="max-width: 70%; border-radius: 8px;">
+    <video class="autoplay-on-view" controls muted playsinline preload="metadata" style="max-width: 70%; border-radius: 8px;">
       <source src="static/videos/results.mp4" type="video/mp4">
     </video>
   </div>
@@ -237,7 +274,7 @@
     PGRD supports MPPI planning for manipulation planning, achieving 8/10 cable rerouting successes versus 2/10 for the physics-only baseline.
   </p>
   <div style="text-align: center;">
-    <video controls style="max-width: 70%; border-radius: 8px;">
+    <video class="autoplay-on-view" controls muted playsinline preload="metadata" style="max-width: 70%; border-radius: 8px;">
       <source src="static/videos/mppi.mp4" type="video/mp4">
     </video>
   </div>
@@ -246,42 +283,42 @@
   </p>
   <div class="columns is-multiline planning-video-grid">
     <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video" controls muted playsinline preload="metadata">
+      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
         <source src="static/videos/lift_arm.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <p class="planning-caption">Lift right arm</p>
     </div>
     <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video" controls muted playsinline preload="metadata">
+      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
         <source src="static/videos/pass_though_closer.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <p class="planning-caption">Pass rope through closer slot</p>
     </div>
     <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video" controls muted playsinline preload="metadata">
+      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
         <source src="static/videos/pass_though_cross.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <p class="planning-caption">Pass rope through crossed slot</p>
     </div>
     <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video" controls muted playsinline preload="metadata">
+      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
         <source src="static/videos/pass_through_gray.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <p class="planning-caption">Pass rope through gray slot</p>
     </div>
     <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video" controls muted playsinline preload="metadata">
+      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
         <source src="static/videos/pass_through_red.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <p class="planning-caption">Pass rope through red slot</p>
     </div>
     <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video" controls muted playsinline preload="metadata">
+      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
         <source src="static/videos/sloth_rotate.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -296,8 +333,10 @@
   </p>
   <div style="text-align: center;">
     <video
+      class="autoplay-on-view"
       id="interactive-video"
       controls
+      muted
       preload="metadata"
       playsinline
       style="max-width: 70%; width: 100%; height: auto; border-radius: 8px;">
