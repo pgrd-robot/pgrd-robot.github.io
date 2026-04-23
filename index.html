@@ -195,10 +195,40 @@
     <h2 class="title is-3">Abstract</h2>
     <div class="content has-text-justified">
       <p>Simulating deformable objects is essential for a wide range of robotic manipulation applications. Yet, accurately predicting their dynamics remains challenging. Physics-based simulations are interpretable, but they require a known model class and precise identification of physical parameters, which are often difficult to obtain. Learning-based approaches can be more expressive in capturing dynamics, but they often generalize poorly outside the training distribution, require substantial training data, and lack physical consistency. We propose Physics-Guided Residual Dynamics (PGRD), a hybrid simulation framework that combines an optimizable spring–mass simulator as a backbone with a learned neural network that predicts residual corrections to compensate for discrepancies between physics-based predictions and reality. Our velocity-based formulation ensures stable simulation, while a sliding-window transformer captures temporal dependencies. We validate our approach on real-world deformable objects, demonstrating that PGRD outperforms both purely physics-based simulators and learning-based methods. We further demonstrate the practical utility of our framework in action-conditioned 3D video prediction using 3D Gaussian Splatting and in Model Predictive Control for manipulation planning on challenging tasks such as cable rerouting, where purely physics-based simulation fails.</p>
-      </p>
     </div>
   </div>
 </div>
+</div>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Explanation Video</h2>
+      </div>
+    </div>
+    <div class="columns is-vcentered is-centered">
+      <div class="column" style="max-width: 900px; width: 100%;">
+        <div class="publication-video">
+          <iframe
+            src="https://www.youtube.com/embed/YCxzg7RFLmg"
+            title="PGRD explanation video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p class="has-text-centered mt-4">
+          <a href="https://youtu.be/YCxzg7RFLmg" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener noreferrer">
+            <span class="icon">
+              <i class="fab fa-youtube"></i>
+            </span>
+            <span>Watch on YouTube</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="hero is-light is-small">
 </section>
