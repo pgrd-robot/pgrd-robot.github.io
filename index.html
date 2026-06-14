@@ -252,129 +252,154 @@
 </section>
 
 <hr class="rounded">
-<div class="rows">
-  <h2 class="title is-3">Method</h2>
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+      </div>
+    </div>
 
-  <h3 class="title is-4">Physics Backbone</h3>
-  <p class="content has-text-justified">
-    We use a spring-mass simulator as a backbone. The simulator includes parameters such as stiffness, damping, and friction,
-    which are tuned to match real-world trajectories via black-box optimization.    
-  </p>
-  <div style="text-align: center;">
-    <img src="static/images/physics_backbone.svg" class="method-image" style="max-width: 60%;" />
+    <h3 class="title is-4">Physics Backbone</h3>
+    <p class="content has-text-justified">
+      We use a spring-mass simulator as a backbone. The simulator includes parameters such as stiffness, damping, and friction,
+      which are tuned to match real-world trajectories via black-box optimization.    
+    </p>
+    <div style="text-align: center;">
+      <img src="static/images/physics_backbone.svg" class="method-image" style="max-width: 60%;" />
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <h3 class="title is-4">Residual Dynamics</h3>
+    <p class="content has-text-justified">
+      While the optimized physics backbone captures the broad dynamics, it cannot fully model the objects. A neural
+      network bridges this gap by predicting per-particle residual velocities, which
+      are added to the simulator output and integrated to compute corrected
+      positions. It consists of a Point Transformer V3 encoder, a NeRF-style decoder
+      for initial velocity estimates, and a sliding-window transformer with gating to
+      refine corrections using temporal history.
+    </p>
+    <div style="text-align: center;">
+      <img src="static/images/neural_network.svg" class="method-image" style="max-width: 60%;" />
+    </div>
   </div>
-
-  <br>
-  <br>
-  <br>
-  <h3 class="title is-4">Residual Dynamics</h3>
-  <p class="content has-text-justified">
-    While the optimized physics backbone captures the broad dynamics, it cannot fully model the objects. A neural
-    network bridges this gap by predicting per-particle residual velocities, which
-    are added to the simulator output and integrated to compute corrected
-    positions. It consists of a Point Transformer V3 encoder, a NeRF-style decoder
-    for initial velocity estimates, and a sliding-window transformer with gating to
-    refine corrections using temporal history.
-  </p>
-  <div style="text-align: center;">
-    <img src="static/images/neural_network.svg" class="method-image" style="max-width: 60%;" />
-  </div>
-
-</div>
-
-<hr class="rounded">
-<div class="rows">
-  <h2 class="title is-3">Results</h2>
-  <p class="content has-text-justified">
-    PGRD achieves the lowest error across all tracking metrics and improves visual quality in
-    action-conditioned video prediction. Qualitative comparisons show improved structural consistency
-    and more realistic deformations across all objects.
-  </p>
-  <div style="text-align: center;">
-    <video class="autoplay-on-view" controls muted playsinline preload="metadata" style="max-width: 70%; border-radius: 8px;">
-      <source src="static/videos/results.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
+</section>
 
 <hr class="rounded">
-<div class="rows">
-  <h2 class="title is-3">Planning with PGRD</h2>
-  <p class="content has-text-justified">
-    PGRD supports MPPI planning for manipulation planning, achieving 8/10 cable rerouting successes versus 2/10 for the physics-only baseline.
-  </p>
-  <div style="text-align: center;">
-    <video class="autoplay-on-view" controls muted playsinline preload="metadata" style="max-width: 70%; border-radius: 8px;">
-      <source src="static/videos/mppi.mp4" type="video/mp4">
-    </video>
-  </div>
-  <p class="content has-text-justified" style="margin-top: 1rem;">
-    We further integrate PGRD with language-conditioned goal generation, allowing planning directly from text commands without collecting a target point cloud in advance. The generated goal PCD is visualized in each of the executions.
-  </p>
-  <div class="columns is-multiline planning-video-grid">
-    <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
-        <source src="static/videos/lift_arm.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p class="planning-caption">Lift right arm</p>
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+      </div>
     </div>
-    <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
-        <source src="static/videos/pass_though_closer.mp4" type="video/mp4">
-        Your browser does not support the video tag.
+    <p class="content has-text-justified">
+      PGRD achieves the lowest error across all tracking metrics and improves visual quality in
+      action-conditioned video prediction. Qualitative comparisons show improved structural consistency
+      and more realistic deformations across all objects.
+    </p>
+    <div style="text-align: center;">
+      <video class="autoplay-on-view" controls muted playsinline preload="metadata" style="max-width: 70%; border-radius: 8px;">
+        <source src="static/videos/results.mp4" type="video/mp4">
       </video>
-      <p class="planning-caption">Pass rope through closer slot</p>
-    </div>
-    <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
-        <source src="static/videos/pass_though_cross.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p class="planning-caption">Pass rope through crossed slot</p>
-    </div>
-    <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
-        <source src="static/videos/pass_through_gray.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p class="planning-caption">Pass rope through gray slot</p>
-    </div>
-    <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
-        <source src="static/videos/pass_through_red.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p class="planning-caption">Pass rope through red slot</p>
-    </div>
-    <div class="column is-one-third-desktop is-half-tablet">
-      <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
-        <source src="static/videos/sloth_rotate.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p class="planning-caption">Rotate sloth</p>
     </div>
   </div>
+</section>
 
-  <hr class="rounded">
-  <h2 class="title is-3">Interactive Simulation with PGRD and 3DGS</h2>
-  <p class="content has-text-justified">
-    PGRD enables action-conditioned 3D video prediction using 3D Gaussian Splatting for interactive simulation.
-  </p>
-  <div style="text-align: center;">
-    <video
-      class="autoplay-on-view"
-      id="interactive-video"
-      controls
-      muted
-      preload="metadata"
-      playsinline
-      style="max-width: 70%; width: 100%; height: auto; border-radius: 8px;">
-      <source src="static/videos/interactive_new_h264.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+<hr class="rounded">
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Planning with PGRD</h2>
+      </div>
+    </div>
+    <p class="content has-text-justified">
+      PGRD supports MPPI planning for manipulation planning, achieving 8/10 cable rerouting successes versus 2/10 for the physics-only baseline.
+    </p>
+    <div style="text-align: center;">
+      <video class="autoplay-on-view" controls muted playsinline preload="metadata" style="max-width: 70%; border-radius: 8px;">
+        <source src="static/videos/mppi.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="content has-text-justified" style="margin-top: 1rem;">
+      We further integrate PGRD with language-conditioned goal generation, allowing planning directly from text commands without collecting a target point cloud in advance. The generated goal PCD is visualized in each of the executions.
+    </p>
+    <div class="columns is-multiline planning-video-grid">
+      <div class="column is-one-third-desktop is-half-tablet">
+        <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
+          <source src="static/videos/lift_arm.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="planning-caption">Lift right arm</p>
+      </div>
+      <div class="column is-one-third-desktop is-half-tablet">
+        <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
+          <source src="static/videos/pass_though_closer.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="planning-caption">Pass rope through closer slot</p>
+      </div>
+      <div class="column is-one-third-desktop is-half-tablet">
+        <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
+          <source src="static/videos/pass_though_cross.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="planning-caption">Pass rope through crossed slot</p>
+      </div>
+      <div class="column is-one-third-desktop is-half-tablet">
+        <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
+          <source src="static/videos/pass_through_gray.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="planning-caption">Pass rope through gray slot</p>
+      </div>
+      <div class="column is-one-third-desktop is-half-tablet">
+        <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
+          <source src="static/videos/pass_through_red.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="planning-caption">Pass rope through red slot</p>
+      </div>
+      <div class="column is-one-third-desktop is-half-tablet">
+        <video class="planning-video autoplay-on-view" controls muted playsinline preload="metadata">
+          <source src="static/videos/sloth_rotate.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="planning-caption">Rotate sloth</p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<hr class="rounded">
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Interactive Simulation with PGRD and 3DGS</h2>
+      </div>
+    </div>
+    <p class="content has-text-justified">
+      PGRD enables action-conditioned 3D video prediction using 3D Gaussian Splatting for interactive simulation.
+    </p>
+    <div style="text-align: center;">
+      <video
+        class="autoplay-on-view"
+        id="interactive-video"
+        controls
+        muted
+        preload="metadata"
+        playsinline
+        style="max-width: 70%; width: 100%; height: auto; border-radius: 8px;">
+        <source src="static/videos/interactive_new_h264.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
 <!-- <hr class="rounded">
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
